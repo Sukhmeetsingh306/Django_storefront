@@ -52,7 +52,7 @@ class CollectionViewSet(ModelViewSet):
     permission_classes = [IsAdminOrReadOnly]
 
     def destroy(self, request, *args, **kwargs):
-        if Product.objects.filter(collection_id=kwargs['pk']).count() > 0:
+        if Product.objects.filter(collection_id=kwargs['pk']):
             return Response({'error': 'Collection can\'t be deleted'},
                             status=status.HTTP_405_METHOD_NOT_ALLOWED)
 
